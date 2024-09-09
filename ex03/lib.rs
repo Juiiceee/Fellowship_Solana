@@ -6,7 +6,6 @@ declare_id!("5irzRSoezBU1kUctkd2wZXtTNSVesnvxQS56GysMHev7");
 #[program]
 pub mod game {
     use super::*;
-    // handler function
     pub fn initia(ctx: Context<Initia>, key: Pubkey) -> Result<()> {
         let coffre = &mut ctx.accounts.token_account;
         coffre.owner = key;
