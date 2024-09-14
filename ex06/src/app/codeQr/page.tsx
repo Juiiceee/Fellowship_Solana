@@ -1,9 +1,10 @@
 "use client";
-import { createQR, encodeURL, EncodeURLComponents} from "@solana/pay";
+import { createQR, encodeURL} from "@solana/pay";
 import { Keypair, PublicKey } from "@solana/web3.js";
 import BigNumber from "bignumber.js";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
+import { usdToSol } from "@/components/calc";
 
 export default function Checkout() {
   const Searchrouter = useSearchParams();
@@ -11,20 +12,20 @@ export default function Checkout() {
   const posiQr = useRef<HTMLDivElement>(null)
 
   const amount = Searchrouter.get('amount');
-  const bigNumberAmount = new BigNumber(amount || '0');
+  const bigNumberAmount = new BigNumber(usdToSol(amount) || '0');
   
 
   const reference = useMemo(() => Keypair.generate().publicKey, []);
 
-  const urlParams: EncodeURLComponents = {
+  const url: URL = encodeURL({
     recipient: new PublicKey('GyETGp22PjuTTiQJQ2P9oAe7oioFjJ7tbTBr1qiXZoa8'),
-    splToken: new PublicKey('Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'),
-    bigNumberAmount,
+    amount: bigNumberAmount,
     reference,
-    label: 'Payment for friends',
+    label : 'Payment for friends',
     message: 'Thanks for your payment!',
-  }
-  const url = encodeURL(urlParams)
+  });
+
+  console.log(url.toString())
   useEffect(() => {
     const qr = createQR(url, 512, 'transparent')
     if (posiQr.current && bigNumberAmount.isGreaterThan(0)) {
@@ -39,7 +40,7 @@ export default function Checkout() {
     <div className="flex flex-col items-center gap-8">
       <button onClick={() => {router.back()}} className="border border-black px-2 "> Return</button>
 
-      <h2 className="text-5xl font-bold">Cost ${bigNumberAmount.toString()}</h2>
+      <h2 className="text-5xl font-bold">Cost {bigNumberAmount.toString()} SOL</h2>
       <div ref={posiQr} />
     </div>
   )
