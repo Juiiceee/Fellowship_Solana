@@ -53,7 +53,7 @@ export default function CreateToken({ onMintAddressChange }: { onMintAddressChan
     <div>
       <h1>CreateToken</h1>
       <button onClick={handleCreateMint}>CreateToken</button>
-      <div>mintAddress: {mintAddress}</div>
+      {mintAddress && <div>mintAddress: {mintAddress}</div>}
     </div>
   );
 }
