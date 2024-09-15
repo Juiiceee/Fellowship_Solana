@@ -10,7 +10,7 @@ interface TokenAccountProps {
 }
 
 export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountProps) {
-	
+
 	const [amount, setAmount] = useState<string>("");
 
 	console.log(amount);
@@ -34,7 +34,7 @@ export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountP
 	return (
 		<div>
 			<h1>Mint</h1>
-			<input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)}/>
+			<input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
 			<button onClick={mintToken}>Mint</button>
 			<div>
 				<p>mintAddress: {mintAddress}</p>
