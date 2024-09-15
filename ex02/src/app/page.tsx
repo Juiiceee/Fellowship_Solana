@@ -28,10 +28,17 @@ export default function Home() {
 			<CreateToken onMintAddressChange={handleMintAddressChange} />
 		</div>
 		<div>
-			<CreateTokenAccount mintAddress={mintAddress} getAssociated={handleAssociatedAddressChange} />
-			<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
-			<Transfer />
-			<Burn />
+		{!mintAddress ? (
+            <div className="flex justify-center max-w-96 mt-8 items-center">
+            </div>
+          ) : (
+			  <div>
+				<CreateTokenAccount mintAddress={mintAddress} getAssociated={handleAssociatedAddressChange} />
+				<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
+				<Transfer />
+				<Burn />
+			</div>
+		  )}
 		</div>
       </div>
       <div>Current Mint Address: {mintAddress}</div>

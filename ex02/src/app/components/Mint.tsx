@@ -11,36 +11,20 @@ interface TokenAccountProps {
 
 export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountProps) {
 	
-	const [amount, setAmount] = useState<number>(0);
+	const [amount, setAmount] = useState<string>("");
 
-	// Gestionnaire pour récupérer la valeur de l'input
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-	  const value = event.target.valueAsNumber; // valueAsNumber pour les inputs de type "number"
-	  setAmount(value); // Mise à jour de l'état avec la valeur récupérée
-	};
-
+	console.log(amount);
 	const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 	const { publicKey, sendTransaction } = useWallet();
 
 	const mintToken = async () => {
-		// const txhash = await mintToChecked(
-		// 	connection, // connection
-		// 	publicKey, // fee payer
-		// 	mintAddress, // mint
-		// 	tokenAccountAddress, // receiver (should be a token account)
-		// 	publicKey, // mint authority
-		// 	BigInt(amount * 1e8), // amount. if your decimals is 8, you mint 10^8 for 1 token.
-		// 	8 // decimals
-		// );
-
 		let tx = new Transaction().add(
 			createMintToInstruction(
 				new PublicKey(mintAddress), // mint
 				new PublicKey(tokenAccountAddress), // receiver (should be a token account)
 				publicKey, // mint authority
-				BigInt(Math.floor(amount * 1e8)), // amount. if your decimals is 8, you mint 10^8 for 1 token.
+				BigInt(amount), // amount. if your decimals is 8, you mint 10^8 for 1 token.
 				8 // decimals
-				// [signer1, signer2 ...], // only multisig account will use
 			)
 		);
 
@@ -50,7 +34,7 @@ export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountP
 	return (
 		<div>
 			<h1>Mint</h1>
-			<input type="number" name="Mnbr" id="Mnbr" placeholder="amount" />
+			<input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)}/>
 			<button onClick={mintToken}>Mint</button>
 			<div>
 				<p>mintAddress: {mintAddress}</p>
