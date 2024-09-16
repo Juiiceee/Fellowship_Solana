@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
+import * as React from 'react';
+import Button from '@mui/material/Button';
 import {
 	PublicKey,
 	Keypair,
@@ -20,7 +22,7 @@ export default function CreateToken({ onMintAddressChange }: { onMintAddressChan
 	const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 	const [mintAddress, setMintAddress] = useState("");
 
-	const handleCreateMint = async () => {
+	const generateToken = async () => {
 		const mint = Keypair.generate();
 		const transaction = new Transaction().add(
 			SystemProgram.createAccount({
@@ -52,7 +54,9 @@ export default function CreateToken({ onMintAddressChange }: { onMintAddressChan
 	return (
 		<div>
 			<h1>CreateToken</h1>
-			<button onClick={handleCreateMint}>CreateToken</button>
+			<Button onClick={generateToken} variant="contained" color={mintAddress ? "success" : "secondary"}>
+			CreateToken
+			</Button>
 			{mintAddress && <div>mintAddress: {mintAddress}</div>}
 		</div>
 	);

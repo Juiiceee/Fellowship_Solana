@@ -6,10 +6,12 @@ import Mint from "@/app/components/Mint";
 import Burn from "@/app/components/Burn";
 import CreateToken from "@/app/components/CreateToken";
 import CreateTokenAccount from "@/app/components/CreateTokenAccount";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export default function Home() {
 	const [mintAddress, setMintAddress] = useState("");
 	const [associatedAddress, setAssociatedAddress] = useState("");
+	const { publicKey } = useWallet();
 
 	const handleMintAddressChange = (newMintAddress: string) => {
 		setMintAddress(newMintAddress);
@@ -23,7 +25,7 @@ export default function Home() {
 	return (
 		<>
 			<HomeClient />
-			<div className="flex justify-center items-center">
+			{publicKey && <div className="flex justify-center items-center">
 				<div className="flex justify-center max-w-96 mt-8 items-center">
 					<CreateToken onMintAddressChange={handleMintAddressChange} />
 				</div>
@@ -32,12 +34,12 @@ export default function Home() {
 						<CreateTokenAccount mintAddress={mintAddress} getAssociated={handleAssociatedAddressChange} />
 						{associatedAddress && <div>
 							<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress} />
-							<Transfer />
-							<Burn />
+							<Transfer mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
+							<Burn mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 						</div>}
 					</div>}
 				</div>
-			</div>
+			</div>}
 		</>
 	);
 }
