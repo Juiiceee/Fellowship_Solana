@@ -34,8 +34,8 @@ export default function Home() {
 						<CreateTokenAccount mintAddress={mintAddress} getAssociated={handleAssociatedAddressChange} />
 						{associatedAddress && <div>
 							<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress} />
-							<Transfer mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 							<Burn mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
+							<Transfer mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 						</div>}
 					</div>}
 				</div>

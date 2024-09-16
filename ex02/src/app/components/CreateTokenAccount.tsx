@@ -23,7 +23,7 @@ export default function CreateTokenAccount({ mintAddress, getAssociated }: Creat
 		);
 		setAssociatedTokenAddress(associatedTokenAddress);
 		getAssociated(associatedTokenAddress.toBase58()); // Call the getAssociated callback
-		const transaction = new Transaction().add(
+		const tx = new Transaction().add(
 			createAssociatedTokenAccountInstruction(
 				publicKey,
 				associatedTokenAddress,
@@ -32,7 +32,7 @@ export default function CreateTokenAccount({ mintAddress, getAssociated }: Creat
 			)
 		);
 
-		const signature = await sendTransaction(transaction, connection);
+		const signature = await sendTransaction(tx, connection);
 		await connection.confirmTransaction(signature, "confirmed");
 	};
 
