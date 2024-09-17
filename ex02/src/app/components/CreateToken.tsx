@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { useTheme } from "next-themes";
 import {
 	PublicKey,
 	Keypair,
@@ -16,6 +17,7 @@ import {
 	TOKEN_PROGRAM_ID,
 	MINT_SIZE,
 } from "@solana/spl-token";
+import { MagicCard } from "@/components/magicui/magic-card";
 
 export default function CreateToken({ onMintAddressChange }: { onMintAddressChange: (address: string) => void }) {
 	const { publicKey, sendTransaction } = useWallet();
@@ -52,12 +54,14 @@ export default function CreateToken({ onMintAddressChange }: { onMintAddressChan
 	};
 
 	return (
-		<div>
-			<h1>CreateToken</h1>
-			<Button onClick={generateToken} variant="contained" color={mintAddress ? "success" : "secondary"}>
-			CreateToken
-			</Button>
-			{mintAddress && <div>mintAddress: {mintAddress}</div>}
-		</div>
+		<MagicCard className="my-3 p-3 flex items-center justify-center flex-col">
+			<div className="flex items-center justify-center flex-col">
+				<h1 className="text-2xl">Create Token</h1>
+				<Button onClick={generateToken} variant="contained" color={mintAddress ? "success" : "secondary"}>
+					Generate
+				</Button>
+				{mintAddress && <div>mintAddress: {mintAddress}</div>}
+			</div>
+		</MagicCard>
 	);
 }

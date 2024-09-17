@@ -5,6 +5,7 @@ import { clusterApiUrl, Connection, PublicKey, Transaction } from "@solana/web3.
 import { useState } from "react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { MagicCard } from "@/components/magicui/magic-card";
 
 interface TokenAccountProps {
 	mintAddress: string;
@@ -21,7 +22,7 @@ export default function Transfer({ mintAddress, tokenAccountAddress }: TokenAcco
 	const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 	const { publicKey, sendTransaction } = useWallet();
 
-	
+
 	const transferToken = async () => {
 		const associatedTokenAddress = await getAssociatedTokenAddress(
 			new PublicKey(mintAddress),
@@ -53,11 +54,13 @@ export default function Transfer({ mintAddress, tokenAccountAddress }: TokenAcco
 		await connection.confirmTransaction(signature, "confirmed");
 	}
 	return (
-		<div>
-			<h1>Transfer</h1>
-			<input type="text" value={destinationAdress} onChange={(e) => setDestinationAccount(e.target.value)} placeholder="Destination Adress" />
-			<input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="amount" />
-			<button onClick={transferToken}>Transfer</button>
-		</div>
+		<MagicCard className="my-3 p-3 flex items-center justify-center flex-col">
+			<div className="flex items-center justify-center flex-col">
+				<h1>Transfer</h1>
+				<input type="text" value={destinationAdress} onChange={(e) => setDestinationAccount(e.target.value)} placeholder="Destination Adress" />
+				<input className="my-2" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="amount" />
+				<Button onClick={transferToken} variant="contained" color="secondary">Transfer</Button>
+			</div>
+		</MagicCard>
 	);
 }

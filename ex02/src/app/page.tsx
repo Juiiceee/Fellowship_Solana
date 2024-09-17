@@ -23,23 +23,29 @@ export default function Home() {
 
 
 	return (
-		<>
+		<div>
 			<HomeClient />
-			{publicKey && <div className="flex justify-center items-center">
-				<div className="flex justify-center max-w-96 mt-8 items-center">
+			{publicKey && 
+			<div className="flex justify-center items-center flex-col">
+				<div className="flex justify-center mt-8 items-center">
 					<CreateToken onMintAddressChange={handleMintAddressChange} />
 				</div>
 				<div>
-					{mintAddress && <div>
+					{mintAddress && 
+					<div>
 						<CreateTokenAccount mintAddress={mintAddress} getAssociated={handleAssociatedAddressChange} />
-						{associatedAddress && <div>
+						{associatedAddress && 
+						<div>
 							<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress} />
 							<Burn mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 							<Transfer mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
-						</div>}
-					</div>}
+						</div>
+						}
+					</div>
+					}
 				</div>
-			</div>}
-		</>
+			</div>
+			}
+		</div>
 	);
 }

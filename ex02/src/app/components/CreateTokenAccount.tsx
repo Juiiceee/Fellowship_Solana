@@ -5,6 +5,7 @@ import { getAssociatedTokenAddress, createAssociatedTokenAccountInstruction } fr
 import { useState } from "react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { MagicCard } from "@/components/magicui/magic-card";
 interface CreateTokenAccountProps {
 	mintAddress: string;
 	getAssociated: (newAssociatedAddress: string) => void;
@@ -37,15 +38,17 @@ export default function CreateTokenAccount({ mintAddress, getAssociated }: Creat
 	};
 
 	return (
-		<div>
-			<h1>CreateTokenAccount</h1>
-			<Button onClick={generateTokenAccount} variant="contained" color={associatedTokenAddress ? "success" : "secondary"}>
-			CreateTokenAccount
-			</Button>
-			<div>
-				{associatedTokenAddress && <p>Associated: {associatedTokenAddress.toBase58()}</p>}
+		<MagicCard className="my-3 p-3 flex items-center justify-center flex-col">
+			<div className="flex items-center justify-center flex-col">
+				<h1 className="text-2xl">Create Token Account</h1>
+				<Button onClick={generateTokenAccount} variant="contained" color={associatedTokenAddress ? "success" : "secondary"}>
+					Generate
+				</Button>
+				<div>
+					{associatedTokenAddress && <p>Associated: {associatedTokenAddress.toBase58()}</p>}
+				</div>
 			</div>
-		</div>
+		</MagicCard>
 	);
 }
 

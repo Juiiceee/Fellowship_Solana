@@ -5,6 +5,7 @@ import { clusterApiUrl, Connection, PublicKey, Transaction } from "@solana/web3.
 import { useState } from "react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { MagicCard } from "@/components/magicui/magic-card";
 
 interface TokenAccountProps {
 	mintAddress: string;
@@ -14,15 +15,13 @@ interface TokenAccountProps {
 export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountProps) {
 
 	const [amount, setAmount] = useState<string>("");
-	let mint = false;
-	console.log(amount);
+	const [isMinted, setIsMinted] = useState<boolean>(false);
 	const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 	const { publicKey, sendTransaction } = useWallet();
 
 	const [tokenAmount, setTokenAmount] = useState<string>("");
 
-	const queryMintToken = async () =>
-	{
+	const queryMintToken = async () => {
 		//const account = await getAccount(connection, new PublicKey(tokenAccountAddress));
 		const account = await connection.getTokenAccountBalance(new PublicKey(tokenAccountAddress));
 		setTokenAmount(account.value.amount);
@@ -41,21 +40,23 @@ export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountP
 
 		const signature = await sendTransaction(tx, connection);
 		await connection.confirmTransaction(signature, "confirmed");
-		mint = true;
+		setIsMinted(true);
 	};
 	return (
-		<div>
-			<h1>Mint</h1>
-			<input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
-			<Button onClick={mintToken} variant="contained" color={mint ? "success" : "secondary"}>
-			Mint
-			</Button>
-			<div>
-				<p>mintAddress: {mintAddress}</p>
-				<p>tokenAccountAddress: {tokenAccountAddress}</p>
-				<button onClick={queryMintToken}>Total token</button>
-				<p>Amount: {tokenAmount ? (Number(tokenAmount) / 1e8) + " Tokens" : ""}</p>
+		<MagicCard className="mb-5 p-3 flex items-center justify-center flex-col">
+			<div className="flex items-center justify-center flex-col">
+				<h1 className="text-2xl">Mint</h1>
+				<input className="my-3" type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+				<Button disabled={!amount ? true : false} onClick={mintToken} variant="contained" color={isMinted ? "success" : "secondary"}>
+					Mint
+				</Button>
+				{isMinted && 
+				<div>
+					<Button className="my-3" variant="contained" color="secondary" onClick={queryMintToken}>Total token</Button>
+					<p>Amount: {tokenAmount ? (Number(tokenAmount) / 1e8) + " Tokens" : ""}</p>
+				</div>
+				}
 			</div>
-		</div>
+		</MagicCard>
 	);
 }
