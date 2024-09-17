@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import ShimmerButton from '@/components/magicui/shimmer-button'
 
 export default function Payement() {
 	const router = useRouter();
@@ -24,9 +25,13 @@ export default function Payement() {
 				</div>
 			</div>
 			<div className='flex justify-center items-center'>
-				<button disabled={(amount <= 0? true: false)} className="bg-black text-white rounded px-5 py-2 mt-10" onClick={() => { router.push("/codeQr?amount=" + amount) }}>
-					Display qrcode
-				</button>
+				<ShimmerButton shimmerDuration={(amount <= 0 ? "100s" : "3s")} background={(amount <= 0 ? "rgba(80, 0, 0, 1)" : "rgba(0, 0, 0, 1)")} className='px-5 py-2 mt-10' disabled={(amount <= 0 ? true : false)} onClick={() => { router.push("/codeQr?amount=" + amount) }}>
+					<span className='text-white'>
+						Display qrcode
+					</span>
+				</ShimmerButton>
+
+
 			</div>
 		</>
 	)

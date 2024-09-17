@@ -1,4 +1,6 @@
-import Payement from './components/Payement'
+"use client";
+import Payement from '../components/Payement'
+import ShimmerButton from '@/components/magicui/shimmer-button'
 
 export default function HomePage() {
 	return (
