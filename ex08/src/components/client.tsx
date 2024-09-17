@@ -18,7 +18,6 @@ export default function HomeClient() {
 				<div className="border hover:border-slate-900 rounded" >
 					<WalletMultiButton />
 				</div>
-				{/* <button onClick={()=>{console.log("salut")}}>salut</button> */}
 			</main>
 		)
 	);
