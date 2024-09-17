@@ -4,7 +4,7 @@ import { Keypair, PublicKey } from "@solana/web3.js";
 import BigNumber from "bignumber.js";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
-import { usdToSol } from "@/components/calc";
+import { usdToSol } from "@/app/components/calc";
 
 export default function Checkout() {
   const Searchrouter = useSearchParams();
@@ -27,7 +27,7 @@ export default function Checkout() {
 
   console.log(url.toString())
   useEffect(() => {
-    const qr = createQR(url, 512, 'transparent')
+    const qr = createQR(url, 512, 'transparent', "white")
     if (posiQr.current && bigNumberAmount.isGreaterThan(0)) {
       posiQr.current.innerHTML = ''
       qr.append(posiQr.current)

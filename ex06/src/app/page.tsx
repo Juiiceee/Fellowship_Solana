@@ -1,4 +1,4 @@
-import Payement from '../components/Payement'
+import Payement from './components/Payement'
 
 export default function HomePage() {
 	return (
