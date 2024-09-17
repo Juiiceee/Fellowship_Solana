@@ -1,9 +1,9 @@
 "use client";
 import HomeClient from "@/components/client";
-import Image from "next/image";
 import React from 'react';
-import { Button, Flex, Input } from 'antd';
+import { Button, Input } from 'antd';
 import { useWallet } from "@solana/wallet-adapter-react";
+import BlurIn from "@/components/magicui/blur-in";
 
 export default function Home() {
 	const [urlIpfs, setUrlIpfs] = React.useState("");
@@ -13,8 +13,8 @@ export default function Home() {
 		<div>
 			<HomeClient />
 			{wallet && <div>
-				<div className="border border-white flex items-center justify-center">
-					<h1 className="text-3xl">Mint Token for all FellowShip Member</h1>
+				<div className="mt-5 inline-block text-center p-2 border border-white">
+					<BlurIn className="" word={"Mint Token for all FellowShip Member"}></BlurIn>
 				</div>
 				<div className="flex items-center justify-center flex-col">
 					<Input className="w-1/2 mt-10 mb-10" placeholder="Basic usage" value={urlIpfs} onChange={(e) => { setUrlIpfs(e.target.value) }} />
