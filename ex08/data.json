@@ -1,16 +1,45 @@
 {
-	"username": "Juiceee",
+	"name": "Juiceee",
+	"symbol": "JUS",
+	"description": "cNFT Summer FellowShip",
+	"seller_fee_basis_points": 0,
 	"image": "https://plum-accurate-bobcat-724.mypinata.cloud/ipfs/QmVnoYjK4ZyDZrJhtMTTQxAyiY1iuKMdSiaomNKhAU6vvg",
-	"category": [
-	  { "trait": "Twitter", "value": "https://x.com/louisbehr_" },
-	  { "trait": "GitHub", "value": "https://github.com/juiiceee" },
-	  { "trait": "LinkedIn", "value": "https://www.linkedin.com/in/louis-behr" },
-	  { "trait": "Discord", "value": "0xjuiceee" },
-	  { "trait": "School", "value": "42"},
-	  { "trait": "Club", "value": "42Blockchain"},
-	  { "trait": "Scool", "value": "42"},
-	  { "trait": "Fellowship", "value": "Summer FellowShip 2024 Solana"},
-	  { "trait": "Mentor", "value": "Kunal Bagaria"},
-	  { "trait": "MEntor", "value": "Syed Aabis Akhtar"}
+	"attributes": [
+		{
+			"trait_type": "Twitter",
+			"value": "https://x.com/louisbehr_"
+		},
+		{
+			"trait_type": "GitHub",
+			"value": "https://github.com/juiiceee"
+		},
+		{
+			"trait_type": "LinkedIn",
+			"value": "https://www.linkedin.com/in/louis-behr"
+		},
+		{
+			"trait_type": "Discord",
+			"value": "0xjuiceee"
+		},
+		{
+			"trait_type": "School",
+			"value": 42
+		},
+		{
+			"trait_type": "Club",
+			"value": "42Blockchain"
+		},
+		{
+			"trait_type": "Fellowship",
+			"value": "Summer FellowShip 2024 Solana"
+		},
+		{
+			"trait_type": "Mentor",
+			"value": "Kunal Bagaria"
+		},
+		{
+			"trait_type": "MEntor",
+			"value": "Syed Aabis Akhtar"
+		}
 	]
-  }
+}
