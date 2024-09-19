@@ -1,7 +1,8 @@
 import { mintToCollectionV1 } from "@metaplex-foundation/mpl-bubblegum";
-import { publicKey } from "@metaplex-foundation/umi";
+import { KeypairSigner, publicKey, Umi } from "@metaplex-foundation/umi";
+import data from '@/../data.json';
 
-export async function mintFunction(umi: any, leaf: string, merkleTree: any, collectionAddress: any, data: any) {
+export async function mintFunction(umi: Umi, leaf: string, merkleTree: KeypairSigner, collectionAddress: KeypairSigner) {
 
 	const mintNFT = mintToCollectionV1(umi, {
 		leafOwner: publicKey(leaf),

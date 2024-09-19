@@ -2,16 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import { useWallet } from "@solana/wallet-adapter-react";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-import { createTree, mplBubblegum } from '@metaplex-foundation/mpl-bubblegum'
+import { mplBubblegum } from '@metaplex-foundation/mpl-bubblegum'
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
-import { generateSigner, percentAmount } from '@metaplex-foundation/umi';
 import { ValidDepthSizePair } from "@solana/spl-account-compression";
-import { createNft, mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
-import data from '@/../data.json';
+import { mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
 import HomeClient from '@/components/client';
 import BlurIn from '@/components/magicui/blur-in';
 import { Button, Input } from 'antd';
 import { mintFunction } from './utils/Mint';
+import { Generate } from './utils/Generate';
 
 export default function Home() {
 	const [urlIpfs, setUrlIpfs] = React.useState("");
@@ -32,33 +31,9 @@ export default function Home() {
 	};
 
 	const generateTree = async () => {
-		const merkleTree = generateSigner(umi);
-		console.log("MerkleTree:", merkleTree);
 
-		const Tree = await createTree(umi, {
-			merkleTree,
-			maxDepth: maxDepthSizePair.maxDepth,
-			maxBufferSize: maxDepthSizePair.maxBufferSize,
-			public: false,
-		});
-		console.log("Tree:", Tree);
-		await Tree.sendAndConfirm(umi);
-
-		const collectionAddress = generateSigner(umi);
-		console.log("collectionAddress:", collectionAddress);
-
-		const Nft = createNft(umi, {
-			mint: collectionAddress,
-			name: data.name,
-			symbol: data.symbol,
-			uri: "https://github.com/Juiiceee/Fellowship_Solana/blob/main/ex08/data.json",
-			sellerFeeBasisPoints: percentAmount(0),
-			isCollection: true,
-		});
-		console.log("Nft:", Nft);
-		await Nft.sendAndConfirm(umi);
-
-		mintFunction(umi, merkleTree, collectionAddress, data);
+		const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
+		mintFunction(umi, "GyETGp22PjuTTiQJQ2P9oAe7oioFjJ7tbTBr1qiXZoa8", merkleTree, collectionAddress);
 	};
 
 	if (!isClient) return null;
