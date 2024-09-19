@@ -4,7 +4,7 @@ import { generateSigner, percentAmount, Umi } from "@metaplex-foundation/umi";
 import { ValidDepthSizePair } from "@solana/spl-account-compression";
 import data from '@/../data.json';
 
-export async function Generate(umi: Umi, maxDepthSizePair: ValidDepthSizePair) {
+export default async function Generate(umi: Umi, maxDepthSizePair: ValidDepthSizePair) {
 	const merkleTree = generateSigner(umi);
 	console.log("MerkleTree:", merkleTree);
 

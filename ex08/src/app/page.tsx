@@ -10,16 +10,17 @@ import HomeClient from '@/components/client';
 import BlurIn from '@/components/magicui/blur-in';
 import { Button, Input } from 'antd';
 import { mintFunction } from './utils/Mint';
-import { Generate } from './utils/Generate';
+import Generate from './utils/Generate';
+import ScrapAddress from './utils/ScrapAddress';
 
 export default function Home() {
 	const [urlIpfs, setUrlIpfs] = React.useState("");
 	const [isClient, setIsClient] = useState(false);
 	const { publicKey, signTransaction, signAllTransactions, wallet } = useWallet();
+	const [isData, setIsData] = useState<string[]>([]);
 	const ipfsUrl = 'https://plum-accurate-bobcat-724.mypinata.cloud/ipfs/QmVnoYjK4ZyDZrJhtMTTQxAyiY1iuKMdSiaomNKhAU6vvg';
 
 	useEffect(() => {
-		// Ensure that the component is only rendered on the client side
 		setIsClient(true);
 	}, []);
 
@@ -30,10 +31,17 @@ export default function Home() {
 		maxBufferSize: 64,
 	};
 
-	const generateTree = async () => {
+	const checkData = async () => {
+		const data = await ScrapAddress();
+		console.log(data);
+	}
 
+	const generateTree = async () => {
+		const data = await ScrapAddress();
 		const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
-		mintFunction(umi, "GyETGp22PjuTTiQJQ2P9oAe7oioFjJ7tbTBr1qiXZoa8", merkleTree, collectionAddress);
+		data.forEach(async (address) => {
+			mintFunction(umi, address, merkleTree, collectionAddress);
+		});
 	};
 
 	if (!isClient) return null;
@@ -48,6 +56,8 @@ export default function Home() {
 				<div className="flex items-center justify-center flex-col">
 					<Input className="w-1/2 mt-10 mb-10" placeholder="Url cNFT" value={urlIpfs} onChange={(e) => { setUrlIpfs(e.target.value) }} />
 					<span>{ipfsUrl}</span>
+					<button onClick={checkData}>Salutfeur</button>
+					<span>{isData}</span>
 					<div className="flex items-center justify-center flex-col">
 						<img src={urlIpfs} style={{ maxWidth: '50%' }} />
 					</div>
