@@ -40,6 +40,14 @@ export default function Home() {
 		const data = await ScrapAddress();
 		const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
 		data.forEach(async (address) => {
+			let last = Math.floor(Date.now() / 1000);
+			while (1) {
+				let now = Math.floor(Date.now() / 1000);
+				if (now >= last + 3) {
+					last = Math.floor(Date.now() / 1000);
+					break;
+				}
+			}
 			mintFunction(umi, address, merkleTree, collectionAddress);
 		});
 	};
