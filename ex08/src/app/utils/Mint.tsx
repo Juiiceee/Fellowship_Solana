@@ -22,6 +22,14 @@ export async function mintFunction(umi: Umi, leaf: string, merkleTree: KeypairSi
 			],
 		},
 	});
-	const txMint = await mintNFT.sendAndConfirm(umi);
+	const txMint = await mintNFT.sendAndConfirm(umi, {
+		confirm: {
+		  commitment: "confirmed",
+		},
+		send: {
+		  commitment: "confirmed",
+		  maxRetries: 3,
+		},
+	  });
 	console.log("Mint", txMint);
 }

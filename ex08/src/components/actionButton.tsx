@@ -16,5 +16,5 @@ export default function ActionButton() {
 	});
 
 	console.log("Merkle Tree Created:", tree.publicKey.toBase58());
-	return ()
+	//return ()
 }
