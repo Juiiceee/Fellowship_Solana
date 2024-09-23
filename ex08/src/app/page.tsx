@@ -35,23 +35,49 @@ export default function Home() {
 		console.log(data);
 	}
 
+	const INITIAL_BATCH_SIZE = 5;
+	const INITIAL_DELAY = 3000;
+	const MAX_RETRIES = 3;
+
 	const generateTree = async () => {
 		const data = await ScrapAddress();
-		let nb = 0;
+		let batchSize = INITIAL_BATCH_SIZE;
+		const results: string[] = [];
+		let delay = INITIAL_DELAY;
 		const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
-		data.forEach(async (address) => {
-			console.log(nb++);
-			let last = Math.floor(Date.now() / 1000);
-			while (1) {
-				let now = Math.floor(Date.now() / 1000);
-				if (now >= last + 5) {
-					last = Math.floor(Date.now() / 1000);
-					break;
+
+		for (let i = 0; i < data.length; i += batchSize) {
+			const batch = data.slice(i, i + batchSize);
+			let retries = 0;
+			let batchResults: string[] = [];
+
+			while (retries < MAX_RETRIES) {
+				try {
+					const batchPromises = batch.map((address) =>
+						mintFunction(umi, address, merkleTree, collectionAddress)
+					);
+					batchResults = await Promise.all(batchPromises);
+					break; // Success, exit retry loop
+				} catch (error) {
+					console.error(`Error minting batch (attempt ${retries + 1}):`, error);
+					retries++;
+					if (retries === MAX_RETRIES) {
+						throw new Error(`Failed to mint batch after ${MAX_RETRIES} attempts`);
+					}
+					batchSize = Math.max(1, Math.floor(batchSize / 2));
+					delay *= 2;
+					await new Promise((resolve) => setTimeout(resolve, delay));
 				}
 			}
-			console.log(address.length);
-			mintFunction(umi, address, merkleTree, collectionAddress);
-			});
+			results.push(...batchResults);
+			console.log(
+				`Minted ${batchResults.length} cNFTs. Total: ${results.length}/${data.length}`
+			);
+
+			if (i + batchSize < data.length) {
+				await new Promise((resolve) => setTimeout(resolve, delay));
+			}
+		};
 	};
 
 	if (!isClient) return null;
