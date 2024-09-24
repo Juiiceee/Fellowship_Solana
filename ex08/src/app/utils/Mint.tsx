@@ -28,8 +28,8 @@ export async function mintFunction(umi: Umi, leaf: string, merkleTree: KeypairSi
 		},
 		send: {
 		  commitment: "confirmed",
-		  maxRetries: 3,
+		  maxRetries: 0,
 		},
-	  });
+	});
 	console.log("Mint", txMint);
 }

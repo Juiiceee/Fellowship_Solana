@@ -41,11 +41,11 @@ export default function Home() {
 		const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
 		data.forEach(async (address) => {
 			console.log(nb++);
-			let last = Math.floor(Date.now() / 1000);
+			let last = Math.floor(Date.now());
 			while (1) {
-				let now = Math.floor(Date.now() / 1000);
-				if (now >= last + 5) {
-					last = Math.floor(Date.now() / 1000);
+				let now = Math.floor(Date.now());
+				if (now >= last + 5000) {
+					last = Math.floor(Date.now());
 					break;
 				}
 			}
