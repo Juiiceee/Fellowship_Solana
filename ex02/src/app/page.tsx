@@ -4,6 +4,7 @@ import HomeClient from "./client";
 import Transfer from "@/app/components/Transfer";
 import Mint from "@/app/components/Mint";
 import Burn from "@/app/components/Burn";
+import Delegate from "@/app/components/Delegate";
 import CreateToken from "@/app/components/CreateToken";
 import CreateTokenAccount from "@/app/components/CreateTokenAccount";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -39,6 +40,7 @@ export default function Home() {
 							<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress} />
 							<Burn mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 							<Transfer mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
+							<Delegate mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 						</div>
 						}
 					</div>

@@ -56,7 +56,7 @@ export default function Transfer({ mintAddress, tokenAccountAddress }: TokenAcco
 	return (
 		<MagicCard className="my-3 p-3 flex items-center justify-center flex-col">
 			<div className="flex items-center justify-center flex-col">
-				<h1>Transfer</h1>
+				<h1 className="text-2xl">Transfer</h1>
 				<input type="text" value={destinationAdress} onChange={(e) => setDestinationAccount(e.target.value)} placeholder="Destination Adress" />
 				<input className="my-2" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="amount" />
 				<Button onClick={transferToken} variant="contained" color="secondary">Transfer</Button>
