@@ -40,7 +40,7 @@ export default function Home() {
 							<Mint mintAddress={mintAddress} tokenAccountAddress={associatedAddress} />
 							<Burn mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
 							<Transfer mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
-							<Delegate mintAddress={mintAddress} tokenAccountAddress={associatedAddress}/>
+							<Delegate tokenAccountAddress={associatedAddress}/>
 						</div>
 						}
 					</div>
