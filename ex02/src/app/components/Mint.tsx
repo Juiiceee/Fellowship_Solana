@@ -22,7 +22,6 @@ export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountP
 	const [tokenAmount, setTokenAmount] = useState<string>("");
 
 	const queryMintToken = async () => {
-		//const account = await getAccount(connection, new PublicKey(tokenAccountAddress));
 		const account = await connection.getTokenAccountBalance(new PublicKey(tokenAccountAddress));
 		setTokenAmount(account.value.amount);
 	}
@@ -30,11 +29,11 @@ export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountP
 	const mintToken = async () => {
 		const tx = new Transaction().add(
 			createMintToInstruction(
-				new PublicKey(mintAddress), // mint
-				new PublicKey(tokenAccountAddress), // receiver (should be a token account)
-				publicKey, // mint authority
-				BigInt(amount * 1e8), // amount. if your decimals is 8, you mint 10^8 for 1 token.
-				8 // decimals
+				new PublicKey(mintAddress),
+				new PublicKey(tokenAccountAddress),
+				publicKey,
+				BigInt(amount * 1e8),
+				8
 			)
 		);
 
@@ -47,14 +46,18 @@ export default function Mint({ mintAddress, tokenAccountAddress }: TokenAccountP
 			<div className="flex items-center justify-center flex-col">
 				<h1 className="text-2xl">Mint</h1>
 				<input className="my-3" type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
-				<Button disabled={!amount ? true : false} onClick={mintToken} variant="contained" color={isMinted ? "success" : "secondary"}>
-					Mint
-				</Button>
-				{isMinted && 
-				<div>
-					<Button className="my-3" variant="contained" color="secondary" onClick={queryMintToken}>Total token</Button>
-					<p>Amount: {tokenAmount ? (Number(tokenAmount) / 1e8) + " Tokens" : ""}</p>
+				<div className={isMinted ? "" : ""}>
+					<Button disabled={!amount ? true : false} onClick={mintToken} variant="contained" color={isMinted ? "success" : "secondary"}>
+						Mint
+					</Button>
 				</div>
+				{isMinted &&
+					<div>
+						<div className="my-3">
+							<Button variant="contained" color="secondary" onClick={queryMintToken}>Get total token</Button>
+						</div>
+						<p className="border-2 border-black px-2">Amount: {tokenAmount ? (Number(tokenAmount) / 1e8) + " Tokens" : ""}</p>
+					</div>
 				}
 			</div>
 		</MagicCard>

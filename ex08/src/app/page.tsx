@@ -8,6 +8,7 @@ import { ValidDepthSizePair } from "@solana/spl-account-compression";
 import { mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
 import HomeClient from '@/components/client';
 import BlurIn from '@/components/magicui/blur-in';
+import { publicKey as publickeyMeta } from '@metaplex-foundation/umi';
 import { Button, Input } from 'antd';
 import { mintFunction } from './utils/Mint';
 import Generate from './utils/Generate';
@@ -23,7 +24,8 @@ export default function Home() {
 		setIsClient(true);
 	}, []);
 
-	const umi = createUmi("https://devnet.helius-rpc.com/?api-key=c7260fbe-27cf-4a2b-a51b-a070101c082a").use(walletAdapterIdentity({ publicKey, signTransaction, signAllTransactions })).use(mplBubblegum()).use(mplTokenMetadata());
+	//const umi = createUmi("https://devnet.helius-rpc.com/?api-key=c7260fbe-27cf-4a2b-a51b-a070101c082a").use(walletAdapterIdentity({ publicKey, signTransaction, signAllTransactions })).use(mplBubblegum()).use(mplTokenMetadata());
+	const umi = createUmi("https://mainnet.helius-rpc.com/?api-key=c7260fbe-27cf-4a2b-a51b-a070101c082a").use(walletAdapterIdentity({ publicKey, signTransaction, signAllTransactions })).use(mplBubblegum()).use(mplTokenMetadata());
 
 	const maxDepthSizePair: ValidDepthSizePair = {
 		maxDepth: 14,
@@ -38,20 +40,22 @@ export default function Home() {
 	const generateTree = async () => {
 		const data = await ScrapAddress();
 		let nb = 0;
-		const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
+		//const { merkleTree, collectionAddress } = await Generate(umi, maxDepthSizePair);
+		const merkleTree = publickeyMeta("GfKZz5Nf1cuHzdG2z1pRkF9WVCjhTuuNs5BBsHRrk5nY");
+		const collectionAddress = publickeyMeta("GkaTLxjWvqUdVjgMuoXdQPKrTqDCUkcWY2UWKGXACspV");
 		data.forEach(async (address) => {
 			console.log(nb++);
-			let last = Math.floor(Date.now() / 1000);
+			let last = Math.floor(Date.now());
 			while (1) {
-				let now = Math.floor(Date.now() / 1000);
-				if (now >= last + 5) {
-					last = Math.floor(Date.now() / 1000);
+				let now = Math.floor(Date.now());
+				if (now >= last + 3000) {
+					last = Math.floor(Date.now());
 					break;
 				}
 			}
 			console.log(address.length);
-			mintFunction(umi, address, merkleTree, collectionAddress);
-			});
+			await mintFunction(umi, address, merkleTree, collectionAddress);
+		});
 	};
 
 	if (!isClient) return null;

@@ -1,18 +1,19 @@
 import { mintToCollectionV1 } from "@metaplex-foundation/mpl-bubblegum";
 import { KeypairSigner, publicKey, Umi } from "@metaplex-foundation/umi";
 import data from '@/../data.json';
+import { PublicKey as MetaplexPublicKey } from "@metaplex-foundation/umi-public-keys";
 
-export async function mintFunction(umi: Umi, leaf: string, merkleTree: KeypairSigner, collectionAddress: KeypairSigner) {
+export async function mintFunction(umi: Umi, leaf: string, merkleTree: MetaplexPublicKey, collectionAddress: MetaplexPublicKey) {
 
-	const mintNFT = mintToCollectionV1(umi, {
+	const txMint = await mintToCollectionV1(umi, {
 		leafOwner: publicKey(leaf),
-		merkleTree: merkleTree.publicKey,
-		collectionMint: collectionAddress.publicKey,
+		merkleTree: merkleTree,
+		collectionMint: collectionAddress,
 		metadata: {
 			name: data.name,
 			uri: "https://github.com/Juiiceee/Fellowship_Solana/blob/main/ex08/data.json",
 			sellerFeeBasisPoints: 0,
-			collection: { key: collectionAddress.publicKey, verified: false },
+			collection: { key: collectionAddress, verified: false },
 			creators: [
 				{
 					address: umi.identity.publicKey,
@@ -21,15 +22,8 @@ export async function mintFunction(umi: Umi, leaf: string, merkleTree: KeypairSi
 				},
 			],
 		},
-	});
-	const txMint = await mintNFT.sendAndConfirm(umi, {
-		confirm: {
-		  commitment: "confirmed",
-		},
-		send: {
-		  commitment: "confirmed",
-		  maxRetries: 3,
-		},
-	  });
-	console.log("Mint", txMint);
+	}).sendAndConfirm(umi, { send: { commitment: 'finalized' } });
+
+	//await new Promise(resolve => setTimeout(resolve, 5000));
+	console.log("Mint", txMint, "owner", publicKey(leaf));
 }

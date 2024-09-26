@@ -15,7 +15,15 @@ export default async function Generate(umi: Umi, maxDepthSizePair: ValidDepthSiz
 		public: false,
 	});
 	console.log("Tree:", Tree);
-	await Tree.sendAndConfirm(umi);
+	await Tree.sendAndConfirm(umi, {
+		confirm: {
+		  commitment: "confirmed",
+		},
+		send: {
+		  commitment: "confirmed",
+		  maxRetries: 3,
+		},
+	});
 
 	const collectionAddress = generateSigner(umi);
 	console.log("collectionAddress:", collectionAddress);
@@ -29,7 +37,15 @@ export default async function Generate(umi: Umi, maxDepthSizePair: ValidDepthSiz
 		isCollection: true,
 	});
 	console.log("Nft:", Nft);
-	await Nft.sendAndConfirm(umi);
+	await Nft.sendAndConfirm(umi, {
+		confirm: {
+		  commitment: "confirmed",
+		},
+		send: {
+		  commitment: "confirmed",
+		  maxRetries: 3,
+		},
+	});
 
 	return ({ merkleTree, collectionAddress, Nft });
 }
