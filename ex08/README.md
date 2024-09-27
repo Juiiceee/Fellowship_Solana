@@ -28,7 +28,7 @@ bun dev
 
 ### Add you IPFS image
 
-![image](https://github.com/user-attachments/assets/91a3249b-93da-4242-b8f2-84570ca69408)
+![image](https://github.com/user-attachments/assets/ee3e0ead-c373-4268-a42f-0ded6d9a18a6)
 
 ### And receive your token
 
