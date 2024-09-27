@@ -14,11 +14,7 @@ use solana_program::{
 pub enum SolProgramInstruction {
 
     Initialize,
-
-
     Deposit { amount: u64 },
-
-
     Withdraw,
 }
 
