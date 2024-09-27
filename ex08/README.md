@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Exercice 08 - Mint de cNFT pour les Fellows sur le Mainnet
+
+Dans cet exercice, vous allez déployer un smart contract pour réaliser un mint collectif de cNFTs (Creative NFTs) pour tous les participants du Fellowship sur le mainnet de Solana. Cet exercice vous permettra de comprendre le processus de minting sur le mainnet et la gestion des NFTs.
+
+## Objectifs
+
+- Déployer un smart contract pour mint des cNFTs.
+- Réaliser un mint collectif pour tous les fellows participants.
+- Gérer la distribution des NFTs sur le mainnet.
 
 ## Getting Started
 
@@ -14,23 +22,16 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Connect your wallet
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![image](https://github.com/user-attachments/assets/87971aba-09d0-4a3a-a49e-9f6a4b43cebf)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Add you IPFS image
 
-## Learn More
+![image](https://github.com/user-attachments/assets/91a3249b-93da-4242-b8f2-84570ca69408)
 
-To learn more about Next.js, take a look at the following resources:
+### And receive your token
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![image](https://github.com/user-attachments/assets/484f2fff-49e2-4e0a-8059-29cc4e2b3406)
+![image](https://github.com/user-attachments/assets/9ffe2207-324b-4d5e-98f9-5ebee9ac1fa0)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
