@@ -11,7 +11,7 @@ export default function Payement() {
 		<>
 			<div>
 				<div className="flex justify-center">
-					<h2 className='text-2xl font-bold'>Le montant est de : {amount}</h2>
+					<h2 className='text-2xl font-bold'>Le montant est de : {amount} USD</h2>
 				</div>
 				<div className="flex justify-center">
 					<button className="bg-white border border-black rounded text-black px-2 mr-5 mt-2" onClick={() => setAmount(amount - 1)}>-1</button>
