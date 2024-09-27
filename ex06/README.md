@@ -27,4 +27,6 @@ bun dev
 ![image](https://github.com/user-attachments/assets/a900ba6c-9e21-4b79-9444-fe758dea3b68)
 ![image](https://github.com/user-attachments/assets/d50febaa-9aac-47b7-a78a-9b1ff5b49e5a)
 
+![Video](https://github.com/Juiiceee/Fellowship_Solana/blob/main/ex06/Video.mp4)
+
 ![image](https://github.com/user-attachments/assets/59f34f3f-6ce6-43a1-b5c3-f68037747208)
