@@ -1,5 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Exercice 06 - Paiements avec Solana Pay
 
+Dans cet exercice, vous apprendrez à utiliser Solana Pay pour générer un QR code permettant d'effectuer des paiements avec un téléphone mobile. Cet exercice vous permettra de comprendre comment intégrer des solutions de paiement dans vos applications décentralisées.
+
+## Objectifs
+
+- Comprendre le fonctionnement de Solana Pay.
+- Créer une interface pour générer un QR code de paiement.
+- Permettre aux utilisateurs de payer avec leur téléphone via le QR code.
+- 
 ## Getting Started
 
 First, run the development server:
@@ -13,24 +21,10 @@ pnpm dev
 # or
 bun dev
 ```
+### Put the price
+#### If you choose a price <=0 the button is red and disabled
+![image](https://github.com/user-attachments/assets/a470e80c-0497-4932-97ed-5594967ee28c)
+![image](https://github.com/user-attachments/assets/a900ba6c-9e21-4b79-9444-fe758dea3b68)
+![image](https://github.com/user-attachments/assets/d50febaa-9aac-47b7-a78a-9b1ff5b49e5a)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![image](https://github.com/user-attachments/assets/59f34f3f-6ce6-43a1-b5c3-f68037747208)
