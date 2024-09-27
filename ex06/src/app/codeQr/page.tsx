@@ -28,7 +28,7 @@ export default function Checkout() {
 
 	console.log(url.toString())
 	useEffect(() => {
-		const qr = createQR(url, 512, 'transparent', "white")
+		const qr = createQR(url, 512, 'transparent', "black")
 		if (posiQr.current) {
 			posiQr.current.innerHTML = ''
 			qr.append(posiQr.current)
