@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Exercice 02 - Création d'un Token (Mint, Burn, Transfer et Delegate)
+
+Dans cet exercice, vous apprendrez à créer un token sur le réseau Solana, à le minter, à le burner, à le transférer, et à déléguer sa gestion. Cet exercice vous permettra de comprendre comment interagir avec les tokens SPL et de créer une interface web pour gérer ces opérations.
+
+## Objectifs
+
+- Créer un token SPL sur le réseau Solana.
+- Développer une page web permettant de :
+  - Minter des tokens.
+  - Burner des tokens.
+  - Transférer des tokens entre comptes.
+  - Déléguer la gestion des tokens.
 
 ## Getting Started
 
@@ -16,21 +27,26 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Connect your wallet
+![image](https://github.com/user-attachments/assets/d872e452-983b-4e7b-bdf8-c1a0ecb864a9)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Create a token
+![image](https://github.com/user-attachments/assets/f02731c9-fbc1-4115-9405-5571526513f5)
+![image](https://github.com/user-attachments/assets/059455ec-70ba-4f2b-b55a-f9f1a74d08f8)
 
-## Learn More
+### Create a token Account
+![image](https://github.com/user-attachments/assets/9ebf0ae8-6a84-47cf-90bf-d024d116ffb6)
 
-To learn more about Next.js, take a look at the following resources:
+### Mint token
+![image](https://github.com/user-attachments/assets/97358c78-832b-445b-bb9c-91776b6e64da)
+![image](https://github.com/user-attachments/assets/9e505017-d058-4a48-948a-1cc1707fe472)
+![image](https://github.com/user-attachments/assets/27bf41e2-a0a0-4234-9e18-9ac683430e6c)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Burn token
+![image](https://github.com/user-attachments/assets/23f02c6b-eb4c-492d-b7d9-c5d41047b7fa)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Transfer token
+![image](https://github.com/user-attachments/assets/a13e8c3a-16e6-44f1-8dcc-b831518c3d6e)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Delegate token
+![image](https://github.com/user-attachments/assets/eb52da76-9188-44e0-85c8-5b20b57ff22b)
