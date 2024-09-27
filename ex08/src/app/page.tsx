@@ -70,7 +70,7 @@ export default function Home() {
 				<div className="flex items-center justify-center flex-col">
 					<Input className="w-1/2 mt-10 mb-10" placeholder="Url cNFT" value={urlIpfs} onChange={(e) => { setUrlIpfs(e.target.value) }} />
 					<span>{ipfsUrl}</span>
-					<button className="border p-1 rounded" onClick={checkData}>Check the fellow in console.log</button>
+					<button className="border p-1 rounded my-3" onClick={checkData}>Check the fellow in console.log</button>
 					<div className="flex items-center justify-center flex-col">
 						<img src={urlIpfs} style={{ maxWidth: '15%' }} />
 					</div>
