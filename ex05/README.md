@@ -8,6 +8,8 @@ Dans cet exercice, vous allez analyser et corriger des bugs dans un code Solana 
 - Utiliser des outils de débogage pour comprendre le fonctionnement du programme.
 - Corriger les bugs et vérifier le bon fonctionnement du code.
 
+## Fails / bug
+
 0. Replace TransferPoints context to removeUsercontext
 1. Owerflow in receiver.points checked_add
 2. Underflow in sender.points checked_sub
